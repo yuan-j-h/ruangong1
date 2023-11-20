@@ -25,6 +25,7 @@
 .function_title img {
     float: left
 }
+
 .function_box {
     width: 100%;
     margin-top: 22px;
@@ -66,6 +67,7 @@
     border: 0;
     overflow: hidden
 }
+
 .function_choosefile_input .input_box input {
     position: absolute;
     left: 0;
@@ -75,6 +77,7 @@
     opacity: 0;
     cursor: pointer
 }
+
 .input_box_delete {
     position: absolute;
     left: -68px;
@@ -194,6 +197,49 @@
     background: #d7d7d7
 }
 
+.container {
+    position: relative;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: thick double #32a1ce;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 80%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    right: 45%;
+    margin : 0 auto;
+    align-items: center;
+}
+
+.container:hover .image {
+    opacity: 0.3;
+}
+
+.container:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    background-color: rgb(76, 132, 175);
+    color: white;
+    font-size: 14px;
+    padding: 14px 28px;
+    text-align: center;
+    margin : 0 auto;
+}
 
 .function_delete {
     padding-top: 108px;
@@ -215,4 +261,3 @@ a.input_box_button {
 a.input_box_button:hover {
     background: #16679a
 }
-

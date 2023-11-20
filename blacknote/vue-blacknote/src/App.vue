@@ -23,16 +23,20 @@
             <input type="file" id="openImage" accept=".hdr, .bil,.tiff" name="files" @change="handleFileChange" />
           </div>
           <div class="input_box" id="startConversion" v-show="showConversionButton">
-            <button type="button" class="input_box_conversion" @click="changeImage">开始分类</button>
+            <button type="button" class="input_box_conversion" @click="changeImage">{{ ShowTitle }}</button>
           </div>
         </div>
-        <div class="function_choosefile_font" id="wtp_choosefile">或者把文件拖拽到此区域</div>
       </div>
     </div>
   </section>
   <!-- 显示分类之后的图片 -->
-  <img v-if="imageURL" :src="imageURL" alt="分类的结果" style="max-width: 100%;" />
-  <p>imageURL = {{ imageURL }}</p>
+  <div  v-if="imageURL" class="container ">
+    <img :src="imageURL" alt="分类结果" class="image" style="width:100%">
+    <div class="middle">
+      <div class="text"> <a :href="imageURL">下载图片</a></div>
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -44,6 +48,7 @@ export default {
       showConversionButton: false,
       uploadedFile: null,
       imageURL: null,
+      ShowTitle :"开始分类",
     };
   },
   methods: {
@@ -67,23 +72,20 @@ export default {
         .then(response => {
           console.log('文件上传成功:', response.data);
           this.showConversionButton = true;
+          
         })
         .catch(error => {
           console.error('上传文件时发生错误:', error);
           // 处理错误
         });
     },
-    //函数有问题这里
+    //点击分类，返回链接
     changeImage() {
       const url = 'http://127.0.0.1:8080/change';
-      axios.get(url, { responseType: 'blob' })
+      axios.get(url)
         .then(response => {
-          console.log('Response:', response);
-          const imageURL = URL.createObjectURL(response.data);
-          console.log('Image URL:', imageURL);
-          this.imageURL = imageURL;
-          console.log('this.imageURL:', this.imageURL);
-          URL.revokeObjectURL(imageURL);
+          this.imageURL = response.data
+          this.ShowTitle="分类完成"
         })
         .catch(error => {
           console.error('加载图片时发生错误:', error);
