@@ -20,7 +20,7 @@
           </div>
           <div class="input_box" id="chooseInput" v-show="!showConversionButton">
             <span><label for="openImage">选择图片</label></span>
-            <input type="file" id="openImage" accept=".hdr, .bil,.tiff" name="files" @change="handleFileChange" />
+            <input type="file" id="openImage" accept="image/*" name="files" @change="handleFileChange" />
           </div>
           <div class="input_box" id="startConversion" v-show="showConversionButton">
             <button type="button" class="input_box_conversion" @click="changeImage">{{ ShowTitle }}</button>
